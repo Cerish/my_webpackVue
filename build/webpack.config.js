@@ -21,12 +21,27 @@ module.exports = {
   },
   devServer: {
     hot: true,
-    port: 8080,
-    contentBase: './dist'
+    port: 8888,
+    contentBase: './dist',
+    proxy: {
+      '/api': {
+        target: 'https://api.github.com:443', //对应自己的接口
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/api': '/'
+        },
+        // onProxyReq: function (proxyReq, req, res) {
+        //   //实在不知道代理后的路径，可以在这里打印出出来看看
+        //   console.log("原路径：" + req.originalUrl, "代理路径：" + req.path)
+        // }
+      }
+    }
   },
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.runtime.esm.js'
+      vue$: 'vue/dist/vue.runtime.esm.js',
+      '@': path.resolve('src')
     },
     extensions: [
       '.js',

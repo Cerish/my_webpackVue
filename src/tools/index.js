@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from './http.js';
+
 export default {
     //api访问封装
     ajax(uri, type, params) {

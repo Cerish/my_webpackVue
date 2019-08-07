@@ -4,7 +4,7 @@ import router from './router/index';
 import store from './store/index';
 
 import axios from 'axios';
-// Vue.prototype.$axios = axios;
+Vue.prototype.$axios = axios;
 
 import tools from './tools/index';
 Vue.prototype.$tools = tools;

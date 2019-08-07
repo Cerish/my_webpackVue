@@ -3,7 +3,8 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const state = {
-    counter: 0
+    counter: 10,
+    tatal: 0
 };
 const getters = {
     getCounter(state) {

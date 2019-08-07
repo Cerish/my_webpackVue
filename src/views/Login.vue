@@ -22,12 +22,19 @@
                 <router-link :to="{path: '/register'}">没有账号？ 去注册一个吧</router-link>
             </div>
         </div>
+        <router-link to='/test'>test</router-link>
+        <router-link to="/">index</router-link>
     </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+import test from './test'
 export default {
     name:  'login',
+    components: {
+        test
+    },
     data() {
         return {
             form: {
@@ -41,22 +48,36 @@ export default {
                 password: [
                     { required: true, message: '密码不能为空', trigger: 'blur'}
                 ]
+            },
+        }
+    },
+    directives: {
+        focus: {
+            componentUpdated(target) {
+                target.focus();
             }
         }
     },
     methods: {
         onSubmit() {
-            console.log(123)
             if(!this.form.username || !this.form.password) {
                 return ;
             }
             let isCorrect = 112233;
-            this.$router.push('/')
+            this.$router.push({path: './test'});
         }
     },
     created() {
-        // this.$axios.get('www.baidu.com?1');
-        this.$tools.ajax('www.baidu.com?1', 'get');
+        this.$axios.get('https://api.github.com:443/users');
+        this.$tools.ajax('/api/users', 'get').then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
+        // var exp = new Date();
+        // exp.setTime(exp.getTime() - 60 * 1000);
+        // document.cookie = 'token = 112233;expires = ' + exp.toUTCString();
+        // console.log(exp.toUTCString());
     }
 }
 </script>

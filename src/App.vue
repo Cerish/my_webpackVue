@@ -9,15 +9,6 @@ export default {
     name: 'App',
     data() {
         return {
-            inputtext: {
-                name: '',
-                password: ''
-            }
-        }
-    },
-    methods: {
-        submit(){
-            console.log('我提交了')
         }
     }
 }
