@@ -1,5 +1,7 @@
 import axios from './http.js';
 
+import login from './login.js'
+
 export default {
     //api访问封装
     ajax(uri, type, params) {
@@ -29,6 +31,9 @@ export default {
         }
         return result;
     },
+    ...login
+
+
     //数据对比
     // diff(before=[], after=[]) {
     //     let diff = require('array-diff')({unique: true, compress: true})
@@ -50,11 +55,5 @@ export default {
     //     })
     //     return {origin_arr, new_arr}
     // },
-    getUserInfo(username) {
-        let userInfoList = JSON.parse(window.localStorage.getItem('userInfo')) || [];
-        let isHasUsername = userInfoList.find(item => {
-            return item.username == username
-        })
-        return isHasUsername
-    }
+    
 }

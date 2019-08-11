@@ -9,8 +9,9 @@ axios.defaults.timeout = 5000;
 // http request拦截器
 axios.interceptors.request.use(
     config => {
-        if(window.localStorage.getItem('token'))
-        config.headers.Authorizationresolve = '112233';
+        if(window.localStorage.getItem('token')) {
+            config.headers.Authorization = `token ${window.localStorage.getItem('token')}`;
+        }
         return config;
     },
     err => {
@@ -22,11 +23,12 @@ axios.interceptors.request.use(
 // http response拦截器
 axios.interceptors.response.use(
     response => {
-        console.log('response response', response);
-        return response;
+        return response.data;
     },
     error => {
-        console.log('response error', error);
+        if(error.response) {
+            console.log('response error', error);
+        }
         return Promise.reject(error);
     }
 )

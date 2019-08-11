@@ -3,15 +3,20 @@ import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
 
-import axios from 'axios';
-Vue.prototype.$axios = axios;
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 import tools from './tools/index';
 Vue.prototype.$tools = tools;
 
-import ElementUI from 'element-ui';
-// import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
+import message from './tools/message';
+Vue.prototype.message = message;
+
+import ECharts from '@/components/ECharts.vue';
+Vue.component('echarts', ECharts);
+
 
 new Vue({
     store,

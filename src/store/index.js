@@ -12,16 +12,18 @@ const getters = {
     }
 };
 const actions = {
-    add: ({commit}) => {
-        return commit('add')
+    add: ({commit}, number = 1) => {
+        console.log(number);
+        return commit('add', number)
     }
 };
 const mutations = {
-    add: (state) => {
-        state.counter++;
+    add: (state, number = 1) => {
+        state.counter += number;
+        console.log(number);
+        console.log(state.counter);
     }
 }
-
 export default new Vuex.Store({
     state,
     getters,

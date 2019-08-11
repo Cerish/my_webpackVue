@@ -8,10 +8,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 module.exports = merge(webpackConfig, {
   mode: 'production',
-  devtool: '#source-map',
+  devtool: '#source-map', 
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -61,7 +61,7 @@ module.exports = merge(webpackConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: 'production'
+        NODE_ENV: JSON.stringify('production')
       }
     }),
     new MiniCssExtractPlugin({
@@ -87,8 +87,8 @@ module.exports = merge(webpackConfig, {
       }
     ]),
     new CleanWebpackPlugin(),
-    new BundleAnalyzerPlugin({
-        analyzerMode: 'static' //可选 'server', 'syayic', 'disabled'
-    })
+    // new BundleAnalyzerPlugin({
+    //     analyzerMode: 'static' //可选 'server', 'syayic', 'disabled'
+    // })
   ]
 })

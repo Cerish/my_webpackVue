@@ -45,7 +45,8 @@ module.exports = {
     },
     extensions: [
       '.js',
-      '.vue'
+      '.vue',
+      '.json'
     ]
   },
   module: {
@@ -70,7 +71,10 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader'
       },
-
+      {
+        test: /\.(less|css)$/,
+        loader: ['style-loader', 'css-loader']
+      },
       {
         test: /\.(jpe?g|png|gif)$/,
         use: [
@@ -111,7 +115,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 4096,
+              limit: 100000,
               fallback: {
                 loader: 'file-loader',
                 options: {

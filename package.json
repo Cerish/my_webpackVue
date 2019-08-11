@@ -17,7 +17,13 @@
     "url": "https://github.com/huajielee/webpack/issues"
   },
   "homepage": "https://github.com/huajielee/webpack#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "webpack": "^4.37.0",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
     "autoprefixer": "^9.6.1",
@@ -35,19 +41,13 @@
     "vue-loader": "^15.7.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.37.0",
-    "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2",
-    "webpack-merge": "^4.2.1"
-  },
-  "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "dart-sass": "^1.22.7",
+    "echarts": "^4.2.1",
     "element-ui": "^2.11.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

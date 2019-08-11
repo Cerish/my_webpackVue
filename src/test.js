@@ -1,5 +1,2 @@
-export default {
-    a:1,
-    b: 2
-}
-export const c = 3;
+import Vue from 'vue';
+export default new Vue();

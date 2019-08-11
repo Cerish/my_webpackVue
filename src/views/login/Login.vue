@@ -7,7 +7,11 @@
                     <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
                 </el-form-item>
                 <el-form-item class="redSign" label="密码" prop="password">
-                    <el-input v-model="form.password" type="password" placeholder="请输入密码"></el-input>
+                    <el-input
+                    v-model="form.password"
+                    type="password"
+                    placeholder="请输入密码"
+                    @keyup.enter.native="onSubmit"></el-input>
                 </el-form-item>
                 <el-form-item size="large" class="submit">
                     <el-button type="primary" @click="onSubmit">登录</el-button>
@@ -22,18 +26,14 @@
                 <router-link :to="{path: '/register'}">没有账号？ 去注册一个吧</router-link>
             </div>
         </div>
-        <router-link to='/test'>test</router-link>
-        <router-link to="/">index</router-link>
     </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-import test from './test'
+import { isContext } from 'vm';
 export default {
     name:  'login',
     components: {
-        test
     },
     data() {
         return {
@@ -51,33 +51,23 @@ export default {
             },
         }
     },
-    directives: {
-        focus: {
-            componentUpdated(target) {
-                target.focus();
-            }
-        }
-    },
     methods: {
         onSubmit() {
-            if(!this.form.username || !this.form.password) {
+            let username = this.form.username;
+            let password = this.form.password;
+            if(!username || !password) {
                 return ;
             }
-            let isCorrect = 112233;
-            this.$router.push({path: './test'});
-        }
+            let isCorrect = this.$tools.isCorrect(username, password);
+            console.log(isCorrect);
+            if(!isCorrect) {
+                this.message('用户名或密码错误', 'warning', true);
+                return;
+            }
+            this.$router.push({path: '/'});
+        },
     },
     created() {
-        this.$axios.get('https://api.github.com:443/users');
-        this.$tools.ajax('/api/users', 'get').then(res => {
-            console.log(res);
-        }).catch(err => {
-            console.log(err);
-        })
-        // var exp = new Date();
-        // exp.setTime(exp.getTime() - 60 * 1000);
-        // document.cookie = 'token = 112233;expires = ' + exp.toUTCString();
-        // console.log(exp.toUTCString());
     }
 }
 </script>
@@ -85,7 +75,7 @@ export default {
 <style lang="scss">
 .login {
     height: calc(100vh);
-    background: url(../assets/img/gate.jpg) no-repeat;
+    background: url(../../assets/img/gate.jpg) no-repeat;
     background-size: 100% 100%;
     box-sizing: border-box;
     padding: 100px 100px 0 0;
@@ -129,7 +119,7 @@ export default {
             }
             .el-form-item__error {
                 position: absolute;
-                bottom: -10px;
+                top: 30px;
                 left: 0;
                 height: 16px;
                 line-height: 16px;
