@@ -1,13 +1,6 @@
 <template>
     <div>
-        这是home页面
-        <router-view />
-        <span>home {{counter}}</span>
-        <span>home {{num}}</span>
-
-        <div class="echarts">
-            <echarts :option="options" resize></echarts>
-        </div>
+        <router-view></router-view>
     </div>
 </template>
 
