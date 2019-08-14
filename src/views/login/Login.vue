@@ -64,6 +64,8 @@ export default {
                 this.message('用户名或密码错误', 'warning', true);
                 return;
             }
+            //设置当前是否登录状态
+            this.$tools.setCookie('isLogin', 'true', 1000 * 60 * 60 * 24);
             this.$router.push({path: '/'});
         },
     },

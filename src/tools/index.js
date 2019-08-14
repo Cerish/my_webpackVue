@@ -31,6 +31,20 @@ export default {
         }
         return result;
     },
+    // 设置cookie与存回时间
+    setCookie(name, value, time) {
+        var date = new Date();
+        date.setTime(date.getTime() + time);
+        document.cookie = `${name}=${value};expires=${date.toUTCString()}`;
+    },
+    // 获取对应 name 的cookie值
+    getCookie(name) {
+        let arrCookie = document.cookie.split(';');
+        let result = arrCookie.find(item => {
+            return item.split('=')[0] == name;
+        })
+        return result && result.split('=')[1];
+    },
     ...login
 
 

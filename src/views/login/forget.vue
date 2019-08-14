@@ -48,23 +48,23 @@ export default {
                 code: [
                     {required: true, message: '请输入计算后的值', trigger: 'blur'}
                 ]
-            }
+            },
         }
     },
     methods: {
         randomNum() {
-            //parseInt() 只取整取部分
-            //Math.floor() Math.ceil() Math.round() => 向下取整，向上取整，四舍五入
             //parseInt()第二个传进去的是n进制
              this.num1 = parseInt(Math.random()*1000+1, 10)
              this.num2 = parseInt(Math.random()*1000+1, 10)
         },
         findPwd() {
             if(!this.forget.username) {
-                this.message('请输入用户名','warning', true)
+                this.message('请输入用户名','warning', true);
+                return;
             }
             if(!this.forget.code) {
-                this.message('请输入计算值','warning', true)
+                this.message('请输入计算值','warning', true);
+                return;
             } else {
                 let total = this.num1 + this.num2;
                 if(this.forget.code != total) {
@@ -75,16 +75,15 @@ export default {
             }
             let isHasUsername = this.$tools.isExist(this.forget.username)
             if(!isHasUsername) {
-                this.message( '该用户名不存在','warning', true);
+                this.message('该用户名不存在','warning', true);
                 this.randomNum();
                 this.forget.code = ''
                 return;
             }
-            //验证完毕
+            //验证完毕 显示用户名所对应的密码
             this.pwdShow = true;
             this.forgetPwd = isHasUsername.password;
-
-        }
+        },
     },
     created() {
         this.randomNum()
