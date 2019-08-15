@@ -3,10 +3,10 @@ import VueRouter from 'vue-router';
 import tools from '../tools/index';
 
 import login from './login/index';
+import main from './main/index';
 //路由懒加载 （npm install @babel/plugin-syntax-dynamic-import）
-const Home = () => import(/* webpackChunkName: "Home" */ '../views/Home.vue');
 
-const Test = () => import(/* webpackChunkName: "Test" */ '../views/test.vue');
+const Test = () => import(/* webpackChunkName: "Test" */ '@/views/test.vue');
 
 Vue.use(VueRouter);
 
@@ -14,15 +14,7 @@ const router = new VueRouter({
     mode: 'hash', //默认是hash值
     routes: [
         ...login,
-        {
-            path: '/',
-            name: 'Home',
-            component: Home,
-            meta: {
-                title: 'Home页面',
-                requireAuth: true
-            }
-        },
+        ...main,
         {
             path: '/test',
             name: 'test',

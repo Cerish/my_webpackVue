@@ -1,6 +1,6 @@
-const login = () => import(/* webpackChunkName: "Login" */ '../../views/login/Login.vue');
-const register = () => import(/* webpackChunkName: "Login" */ '../../views/login/register.vue');
-const forget = () => import(/* webpackChunkName: "Login" */ '../../views/login/forget.vue');
+const login = () => import(/* webpackChunkName: "Login" */ '@/views/login/Login.vue');
+const register = () => import(/* webpackChunkName: "Login" */ '@/views/login/register.vue');
+const forget = () => import(/* webpackChunkName: "Login" */ '@/views/login/forget.vue');
 
 let logins = [
     {
