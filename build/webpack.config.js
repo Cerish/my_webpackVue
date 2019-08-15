@@ -19,6 +19,9 @@ module.exports = {
     // 资源引用的路径
     publicPath: '/'
   },
+  externals:{
+    "BMap":"BMap"
+  },
   devServer: {
     hot: true,
     port: 8888,
