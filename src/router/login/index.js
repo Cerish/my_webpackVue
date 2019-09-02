@@ -8,7 +8,7 @@ let logins = [
         name: 'login',
         component: login,
         meta: {
-            title: '登录页面'
+            title: '登录页面',
         }
     },
     {
