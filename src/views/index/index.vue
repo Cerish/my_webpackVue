@@ -1,100 +1,88 @@
 <template>
     <div class='index'>
-        <div class="index-header">
-            <p class="header-left">欢迎您， <span class="username">沙地和掉</span></p>
-            <div class="header-right" >
-                <i class="el-icon-switch-button"></i>
-                注销
-            </div>
+        <div class="echarts-map">
+            <echarts-map :option="mapOption" resize></echarts-map>
         </div>
-        <div>{{LocationCity}}</div>
-        <button @click="getCity">点击获取城市</button>
     </div>
 </template>
 
 <script>
+
 import BMap from 'BMap';
 export default {
     name:'index',
     data() {
         return {
-            LocationCity: '正在定位',
-            options: {
-                color: ['#f44'],
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer : {
-                        type : 'shadow'
-                    }
+            mapOption: {
+                title: {
+                    text: "全国省市区三级下钻地理图",
+                    left: 'center',
+                    top: '20px'
                 },
-                xAxis : [
+                dataRange: {
+                    show: true,
+                    min: 0,
+                    max: 1000,
+                    text: ['High', 'Low'],
+                    realtime: true,
+                    calculable: true,
+                    color: ['orangered', 'yellow', 'lightskyblue']
+                },
+                series: [
                     {
-                        type : 'category',
-                        data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月',],
-                        axisTick: {
-                            alignWithLabel: true
-                        }
-                    }
-                ],
-                yAxis : [
-                    {
-                        type : 'value'
-                    }
-                ],
-                series : [
-                    {
-                        name:'每月花费',
-                        type:'bar',
-                        barWidth: '60%',
-                        data:[995,666,444,858,654,236,645,546,846,225,547,356]
+                        type: "map",
+                        mapType: "china",
+                        label: {
+                            normal: {
+                                show: true
+                            }
+                        },
+                        // 是否可以缩放
+                        roam: false,
+                        data: [{
+                            "name": "北京",
+                            "value": 599
+                        }, {
+                            "name": "上海",
+                            "value": 142
+                        }, {
+                            "name": "黑龙江",
+                            "value": 44
+                        }, {
+                            "name": "深圳市",
+                            "value": 92
+                        }, {
+                            "name": "湖北",
+                            "value": 810
+                        }, {
+                            "name": "四川",
+                            "value": 453
+                        }, {
+                            "name": "汕头市",
+                            "value": 453
+                        }]
                     }
                 ]
-            },
+            }
         };
     },
     methods: {
-        getCity() {
-            const geolocation = new BMap.Geolocation();
-            var _this = this
-            geolocation.getCurrentPosition(function getinfo(position){
-                let city = position.address.city;             //获取城市信息
-                let province = position.address.province;    //获取省份信息
-                _this.LocationCity = city
-                console.log(position);
-            }, function(e) {
-                _this.LocationCity = "定位失败"
-            }, {provider: 'baidu'});
-        }
     },
     created() {
-    
     },
+    mounted() {
+    }
 }
 </script>
 
 <style lang='scss'>
 .index {
-    .index-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 50px;
-        height: 50px;
-        background-color: #fff;
-        .header-left {
-            font-size: 16px;
-            span.username {
-                font-weight: 600;
-            }
-        }
-        .header-right {
-            font-size: 16px;
-            cursor: pointer;
-            .el-icon-switch-button {
-                font-size: 18px;
-                margin-right: 5px;
-            }
-        }
+    position: relative;
+    height: 100%;
+    .echarts-map{
+        width: 100%;
+        height: 100%;
     }
+    
 }
 </style>

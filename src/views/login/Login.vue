@@ -4,14 +4,25 @@
             <p class="title">您好，请先登录</p>
             <el-form :model="form" :rules="rules">
                 <el-form-item class="redSign" label="用户名" prop="username">
-                    <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
+                    <i class="iconfont icon-yonghu"></i>
+                    <el-input
+                        v-model="form.username"
+                        placeholder="请输入用户名">
+                    </el-input>
                 </el-form-item>
                 <el-form-item class="redSign" label="密码" prop="password">
+                    <i class="iconfont icon-mima"></i>
                     <el-input
-                    v-model="form.password"
-                    type="password"
-                    placeholder="请输入密码"
-                    @keyup.enter.native="onSubmit"></el-input>
+                        v-model="form.password"
+                        :type="visible? 'text' : 'password'"
+                        placeholder="请输入密码"
+                        @keyup.enter.native="onSubmit">
+                    </el-input>
+                    <i
+                        @click="changeVisible"
+                        class="visibleIcon"
+                        :class="visible? 'iconfont icon-mimakejian' : 'iconfont icon-mimabukejian'"
+                    ></i>
                 </el-form-item>
                 <el-form-item size="large" class="submit">
                     <el-button type="primary" @click="onSubmit">登录</el-button>
@@ -49,6 +60,7 @@ export default {
                     { required: true, message: '密码不能为空', trigger: 'blur'}
                 ]
             },
+            visible: false
         }
     },
     methods: {
@@ -64,10 +76,15 @@ export default {
                 this.message('用户名或密码错误', 'warning', true);
                 return;
             }
-            //设置当前是否登录状态
+            // 设置当前是否登录状态
             this.$tools.setCookie('isLogin', 'true', 1000 * 60 * 60 * 24);
+            // 设置当前登录的用户
+            window.localStorage.setItem('nowLogin', username);
             this.$router.push({path: '/'});
         },
+        changeVisible() {
+            this.visible = !this.visible;
+        }
     },
     created() {
     }
@@ -118,6 +135,7 @@ export default {
                 height: 25px;
                 border-radius: 5px;
                 background-color: #fff;
+                padding-left: 20px;
             }
             .el-form-item__error {
                 position: absolute;
@@ -127,6 +145,15 @@ export default {
                 line-height: 16px;
                 font-size: 12px;
                 color: red;
+            }
+            i {
+                z-index: 99;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            i.visibleIcon {
+                left: calc(100% - 20px);
             }
         }
         .submit .el-form-item__content {

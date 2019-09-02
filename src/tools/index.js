@@ -39,7 +39,7 @@ export default {
     },
     // 获取对应 name 的cookie值
     getCookie(name) {
-        let arrCookie = document.cookie.split(';');
+        let arrCookie = document.cookie.split('; ');
         let result = arrCookie.find(item => {
             return item.split('=')[0] == name;
         })

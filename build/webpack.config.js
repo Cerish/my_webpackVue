@@ -1,14 +1,12 @@
 //公用环境配置
 
+// import "babel-polyfill"
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
-  entry: {
-    // 配置入口文件
-    main: path.resolve(__dirname, '../src/main.js')
-  },
+  entry: ["babel-polyfill", path.resolve(__dirname, '../src/main.js')],
   output: {
     // 配置打包文件输出的目录
     path: path.resolve(__dirname, '../dist'),
@@ -113,12 +111,12 @@ module.exports = {
         ]
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+        test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/i,
         use: [
           {
             loader: 'url-loader',
             options: {
-              limit: 100000,
+              limit: 4096,
               fallback: {
                 loader: 'file-loader',
                 options: {

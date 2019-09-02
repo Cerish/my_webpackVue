@@ -8,8 +8,19 @@ let mainView = [
         component: Index,
         meta: {
             title: '主页面',
-            requireAuth: true
+            requireAuth: true,
+            menuName: '地理图'
+        }
+    },
+    {
+        path: '/1',
+        name: 'Index',
+        component: Index,
+        meta: {
+            title: '主页面',
+            requireAuth: true,
+            menuName: '主页面1'
         },
-    }
+    },
 ];
 export default mainView;
