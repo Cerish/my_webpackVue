@@ -1,8 +1,6 @@
 <template>
-    <div class='index'>
-        <div class="echarts-map">
-            <echarts-map :option="mapOption" resize></echarts-map>
-        </div>
+    <div class="echarts-map">
+        <echarts-map :option="mapOption" resize></echarts-map>
     </div>
 </template>
 
@@ -10,7 +8,7 @@
 
 import BMap from 'BMap';
 export default {
-    name:'index',
+    name:'chinaMap',
     data() {
         return {
             mapOption: {
@@ -76,13 +74,9 @@ export default {
 </script>
 
 <style lang='scss'>
-.index {
+.echarts-map{
     position: relative;
+    width: 100%;
     height: 100%;
-    .echarts-map{
-        width: 100%;
-        height: 100%;
-    }
-    
 }
 </style>

@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Echarts from 'echarts'
+import Echarts from 'echarts';
 export default {
     name: 'ECharts',
     props: {
@@ -21,7 +21,7 @@ export default {
     },
     data() {
         return {
-
+            myChart: null
         }
     },
     created() {
@@ -31,14 +31,22 @@ export default {
     },
     methods: {
         setECharts() {
-            let myChart = Echarts.init(this.$refs.echarts);
+            this.myChart = Echarts.init(this.$refs.echarts);
             let option = this.option;
-            myChart.setOption(option);
+            this.myChart.setOption(option);
  
             //建议加上以下这一行代码，不加的效果图如下（当浏览器窗口缩小的时候）。超过了div的界限（红色边框）
             if(this.resize) {
-                window.addEventListener('resize', () => myChart.resize());
+                window.addEventListener('resize', () => this.myChart.resize());
             }
+        }
+    },
+    watch: {
+        option: {
+            handler(newValue) {
+                this.myChart.setOption(newValue);
+            },
+            deep: true
         }
     }
 }

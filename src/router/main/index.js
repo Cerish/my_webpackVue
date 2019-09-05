@@ -6,7 +6,7 @@ let main = [
         path: '/',
         name: 'Home',
         component: Home,
-        redirect: '/index',
+        redirect: '/chart',
         meta: {
             title: 'Home页面',
             requireAuth: true

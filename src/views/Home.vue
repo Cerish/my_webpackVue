@@ -11,35 +11,7 @@
             </div>
         </div>
         <div class="home-main">
-            <div class="main-left">
-                <el-menu
-                    :default-active="$route.path"
-                    :default-openeds="defaultOpeneds"
-                    @open="test"
-                    router>
-                    <template v-for="(item, index) in Nav">
-                        <el-submenu
-                            v-if="item.children"
-                            :key="index"
-                            :index="item.path">
-                            <template slot="title">
-                                {{item.meta.menuName}}
-                            </template>
-                            <el-menu-item
-                                v-for="(itemChild , index) in item.children"
-                                :index="itemChild.path" :key="index">
-                                <span>{{itemChild.meta.menuName}}</span>
-                            </el-menu-item>
-                        </el-submenu>
-                        <el-menu-item
-                            v-else
-                            :index="item.path"
-                            :key="index">
-                            <span>{{item.meta.menuName}}</span>
-                        </el-menu-item>
-                    </template>
-                </el-menu>
-            </div>
+            <primaryNav />
             <div class="main-right">
                 <router-view></router-view>
             </div>
@@ -48,9 +20,12 @@
 </template>
 
 <script>
-import Nav from '@/router/main/config/index.js'
+import primaryNav from '@/components/primaryNav.vue'
 export default {
     name: 'Home',
+    components: {
+        primaryNav
+    },
     computed: {
         defaultOpeneds() {
             return [`/${this.$route.path.split('/')[1]}`];
@@ -60,7 +35,6 @@ export default {
         return {
             username: window.localStorage.nowLogin,
             Location: '正在定位',
-            Nav: Nav
         }
     },
     methods: {
@@ -111,6 +85,8 @@ export default {
 <style lang="scss">
 .home {
     background-color: #fff;
+    position: relative;
+    overflow: hidden;
     .home-header {
         display: flex;
         justify-content: space-between;

@@ -25,6 +25,9 @@ Vue.component('echarts-map', EChartsMap);
 import ECharts from '@/components/ECharts/echarts';
 Vue.component('echarts', ECharts);
 
+// 编辑弹框
+import editDialog from '@/components/Dialog/editDialog.vue'
+Vue.component('editDialog', editDialog)
 
 new Vue({
     store,

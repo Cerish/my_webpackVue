@@ -45,29 +45,29 @@ export default {
         })
         return result && result.split('=')[1];
     },
-    ...login
+    ...login,
 
 
-    //数据对比
-    // diff(before=[], after=[]) {
-    //     let diff = require('array-diff')({unique: true, compress: true})
-    //     let result = diff(before, after)
-    //     let origin_arr = [...before]
-    //     let new_arr = [...after]
-    //     result.forEach( item => {
-    //         if(item[0] == '-' || item[0] == 'x') {
-    //             let index = origin_arr.indexOf(item[1][0])
-    //             for(let i = 0,length = item[1].length; i < length; i++) {
-    //             new_arr.splice(index, 0, '')
-    //             }
-    //         } else if (item[0] == '+' || item[0] == 'p') {
-    //             let index = new_arr.indexOf(item[1][0])
-    //             for(let i = 0,length = item[1].length; i < length; i++) {
-    //             origin_arr.splice(index, 0, '')
-    //             }
-    //         }
-    //     })
-    //     return {origin_arr, new_arr}
-    // },
+    // 数据对比
+    diff(before=[], after=[]) {
+        let diff = require('array-diff')({unique: true, compress: true})
+        let result = diff(before, after)
+        let origin_arr = [...before]
+        let new_arr = [...after]
+        result.forEach( item => {
+            if(item[0] == '-' || item[0] == 'x') {
+                let index = origin_arr.indexOf(item[1][0])
+                for(let i = 0,length = item[1].length; i < length; i++) {
+                new_arr.splice(index, 0, '')
+                }
+            } else if (item[0] == '+' || item[0] == 'p') {
+                let index = new_arr.indexOf(item[1][0])
+                for(let i = 0,length = item[1].length; i < length; i++) {
+                origin_arr.splice(index, 0, '')
+                }
+            }
+        })
+        return {origin_arr, new_arr}
+    },
     
 }

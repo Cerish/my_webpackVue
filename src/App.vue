@@ -37,4 +37,11 @@ export default {
   color: #2c3e50;
   font-size: 14px;
 }
+ul {
+    margin: 0;
+    padding: 0;
+    li {
+        list-style: none;
+    }
+}
 </style>
