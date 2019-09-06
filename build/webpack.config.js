@@ -133,7 +133,7 @@ module.exports = {
     new VueLoaderPlugin(),
 
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html')
+      template: path.resolve(__dirname, '../docs/index.html')
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
