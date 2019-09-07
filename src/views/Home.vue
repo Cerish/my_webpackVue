@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import primaryNav from '@/components/primaryNav.vue'
+import primaryNav from '@/components/primaryNav.vue';
+import {mapGetters} from 'vuex';
 export default {
     name: 'Home',
     components: {
@@ -29,12 +30,22 @@ export default {
     computed: {
         defaultOpeneds() {
             return [`/${this.$route.path.split('/')[1]}`];
+        },
+        ...mapGetters([
+            'getLocation'
+        ]),
+    },
+    watch: {
+        getLocation: {
+            handler(newValue) {
+                this.Location = newValue;
+            }
         }
     },
     data() {
         return {
             username: window.localStorage.nowLogin,
-            Location: '正在定位',
+            Location: this.$store.state.Location,
         }
     },
     methods: {
@@ -43,7 +54,8 @@ export default {
             this.$tools.setCookie('isLogin', 'true', -1);
             this.$router.push({path: '/login'});
         },
-        getCity() {
+        // 百度地图获取定位
+        getBaiduLocation() {
             let that = this;
             const geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(
@@ -70,14 +82,40 @@ export default {
                 }
             );
         },
-        test(path) {
-            this.$router.push({path: path});
+        getGouldLocation() {
+            var that = this;
+            var map = new AMap.Map('container', {
+                resizeEnable: true
+            });
+            AMap.plugin('AMap.Geolocation', function() {
+                var geolocation = new AMap.Geolocation({
+                    enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                    timeout: 10000,          //超过10秒后停止定位，默认：5s
+                    buttonPosition:'RB',    //定位按钮的停靠位置
+                    buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                    zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+                });
+                map.addControl(geolocation);
+                geolocation.getCurrentPosition(function(status,result){
+                    if(status=='complete'){
+                        console.log(result);
+                        // onComplete(result)
+                        let info = result.addressComponent;
+                        let streetInfo = `${info.province}${info.city}${info.district}`;
+                        that.$store.commit('setLocation', streetInfo);
+                    }else{
+                        // onError(result);
+                        console.log(result);
+                    }
+                });
+            });
         }
     },
     created() {
     },
     mounted() {
-        this.getCity();
+        // this.getBaiduLocation();
+        this.getGouldLocation();
     }
 }
 </script>

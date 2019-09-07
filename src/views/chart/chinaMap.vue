@@ -6,7 +6,6 @@
 
 <script>
 
-import BMap from 'BMap';
 export default {
     name:'chinaMap',
     data() {
