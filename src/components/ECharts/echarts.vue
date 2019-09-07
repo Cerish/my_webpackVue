@@ -44,6 +44,7 @@ export default {
     watch: {
         option: {
             handler(newValue) {
+                console.log(112233);
                 this.myChart.setOption(newValue);
             },
             deep: true

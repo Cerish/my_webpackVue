@@ -13,13 +13,17 @@ const state = {
             similar_word: ['同义词1','同义词2','同义词3',]
         }
     ],
+    Location: ''
 };
 const getters = {
     getCounter(state) {
         return state.counter;
     },
     getListData(state) {
-        return state.listData
+        return state.listData;
+    },
+    getLocation(state) {
+        return state.Location;
     }
 };
 const actions = {
@@ -36,6 +40,9 @@ const mutations = {
     },
     setListData: (state, listData) =>{
         state.listData = listData;
+    },
+    setLocation: (state, Location) => {
+        state.Location = Location;
     }
 }
 export default new Vuex.Store({

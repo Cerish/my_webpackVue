@@ -5,12 +5,13 @@
 </template>
 
 <script>
-
+import {mapState} from 'vuex';
 export default {
     name:'temperature',
     data() {
         return {
             dateArr: [],
+            // Location: this.$store.state.Location,
             options: {
                 backgroundColor:'#062D87',
                 title : {
@@ -195,6 +196,11 @@ export default {
                 ]
             }
         };
+    },
+    computed: {
+        ...mapState([
+            'Location'
+        ])
     },
     methods: {
         getDate(time) {

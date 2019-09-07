@@ -17,16 +17,17 @@ module.exports = {
     // 资源引用的路径
     publicPath: '/'
   },
-  externals:{
-    "BMap":"BMap"
-  },
+  // 百度地图配置BMap
+  // externals:{
+  //   "BMap":"BMap"
+  // },
   devServer: {
     hot: true,
     port: 8888,
     contentBase: './dist',
     proxy: {
       '/api': {
-        target: 'https://api.github.com:443', //对应自己的接口
+        target: 'https://api.map.baidu.com:443', //对应自己的接口
         changeOrigin: true,
         ws: true,
         pathRewrite: {
