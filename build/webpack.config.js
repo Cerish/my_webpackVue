@@ -134,7 +134,8 @@ module.exports = {
     new VueLoaderPlugin(),
 
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../docs/index.html')
+      template: path.resolve(__dirname, '../docs/index.html'),
+      favicon: 'src/assets/img/badminton.ico'
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
